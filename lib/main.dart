@@ -46,4 +46,14 @@ class _TaskScreenState extends State<TaskScreen> {
       timeController.clear();
     }
   }
+
+  void toggleCompletion(String id, bool currentStatus) {
+    FirebaseFirestore.instance.collection('tasks').doc(id).update({
+      'completed': !currentStatus,
+    });
+  }
+
+  void deleteTask(String id) {
+    FirebaseFirestore.instance.collection('tasks').doc(id).delete();
+  }
 }
